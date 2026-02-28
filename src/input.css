@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("./Assets/Fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;   
+  font-display: swap;    
+}
+
+
+
+
+@theme {
+  --color-Neutral-900: #030303;
+  --color-Neutral-400: #6A6662;
+  --color-Neutral-200: #FFF7F0;
+  --color-Neutral-0:   #FFFFFF;
+  --color-Light-Red-500:    #E16B5B;
+  --color-Galactic-Blue-500:#755CDE;
+  --color-Summer-Yellow-500:#F6A560;
+  --color-Pink-500:         #F39E9E;
+  --color-Cyan-500:         #61C4B7;
+  --color-Dark-Purple-500:  #552049;
+
+  --font-primary: "Plus Jakarta Sans";
+  
+  --breakpoint-sm: 376px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 976px;   
+  --breakpoint-xl: 1280px;
+
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* 3. Typography utilities */
+@layer utilities {
+  .text-1 {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;           
+    letter-spacing: 0;   
+  }
+
+  @media (min-width: 768px) {
+    .text-1 {
+      font-size: 3.5rem;
+      line-height: 1.3;
+      letter-spacing: 0;  
+    }
+  }
+
+  /* Medium weight example */
+  .text-1-medium {
+    font-family: var(--font-primary);
+    font-weight: 500;           /* ← Medium */
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+ 
+
+  /* Your text-2 – fixed font family (assuming you meant Plus Jakarta Sans) */
+  .text-2 {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    line-height: 1.3;
+    font-weight: 700;           /* Light */
+    letter-spacing: 0;
+  }
+
+  /* @media (min-width: 768px) {
+    .text-2 {
+      font-size: 2.5rem;
+      letter-spacing: -0.046875rem;
+    }
+  } */
+}
+
+  .text-3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: 0;
+    font-family: var(--font-primary);
+    font-weight: 700;
+  }
+
+  .text-4 {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+     font-family: var(--font-primary, "Public Sans", monospace);
+    font-weight: 500;
+  }
+
+  .text-5 {
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-family: var(--font-primary, "Public Sans", monospace);
+    font-weight: 700;
+  }
+  
+
+  
+  
