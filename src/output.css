@@ -10,6 +10,7 @@
     --spacing: 0.25rem;
     --radius-sm: 0.25rem;
     --radius-lg: 0.5rem;
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -197,6 +198,9 @@
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
@@ -211,6 +215,9 @@
   }
   .mb-16 {
     margin-bottom: calc(var(--spacing) * 16);
+  }
+  .block {
+    display: block;
   }
   .contents {
     display: contents;
@@ -229,6 +236,9 @@
   }
   .aspect-\[3\/2\] {
     aspect-ratio: 3/2;
+  }
+  .h-2 {
+    height: calc(var(--spacing) * 2);
   }
   .h-12 {
     height: calc(var(--spacing) * 12);
@@ -250,6 +260,15 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-2 {
+    width: calc(var(--spacing) * 2);
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -281,11 +300,20 @@
   .min-w-\[375px\] {
     min-width: 375px;
   }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
   .flex-shrink-0 {
     flex-shrink: 0;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -295,6 +323,9 @@
   }
   .flex-col {
     flex-direction: column;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
   }
   .place-items-center {
     place-items: center;
@@ -308,8 +339,8 @@
   .justify-center {
     justify-content: center;
   }
-  .justify-start {
-    justify-content: flex-start;
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
   }
   .space-y-5 {
     :where(& > :not(:last-child)) {
@@ -362,6 +393,10 @@
   .rounded-sm {
     border-radius: var(--radius-sm);
   }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .bg-Cyan-500 {
     background-color: var(--color-Cyan-500);
   }
@@ -376,6 +411,9 @@
   }
   .bg-Neutral-200 {
     background-color: var(--color-Neutral-200);
+  }
+  .bg-Neutral-400 {
+    background-color: var(--color-Neutral-400);
   }
   .bg-Neutral-900 {
     background-color: var(--color-Neutral-900);
@@ -425,12 +463,20 @@
   .text-Neutral-900 {
     color: var(--color-Neutral-900);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-all {
+    transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -442,6 +488,13 @@
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
+  }
+  .ease-out {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
+  }
+  .will-change-transform {
+    will-change: transform;
   }
   .sm\:w-\[33\.75rem\] {
     @media (width >= 376px) {
@@ -675,12 +728,21 @@
   inherits: false;
   initial-value: 0;
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
 }
 @property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
   syntax: "*";
   inherits: false;
 }
@@ -693,8 +755,10 @@
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
       --tw-outline-style: solid;
       --tw-duration: initial;
+      --tw-ease: initial;
     }
   }
 }

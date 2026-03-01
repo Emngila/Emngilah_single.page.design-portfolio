@@ -1,77 +1,100 @@
-const track = document.querySelector(".slides");
-let slides = document.querySelectorAll(".slide");
+const track = document.querySelector('.slides');
+const slides = track ? Array.from(track.querySelectorAll('.slide')) : [];
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+const status = document.getElementById('slide-status');
+const dotsWrap = document.getElementById('slide-dots');
 
-// Clone first and last
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length - 1].cloneNode(true);
+if (track && slides.length > 0 && prevButton && nextButton) {
+  const total = slides.length;
+  let index = 0;
+  let touchStartX = 0;
 
-// Insert clones
-track.appendChild(firstClone);
-track.insertBefore(lastClone, slides[0]);
+  const getStep = () => {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    const styles = window.getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap || '0');
+    return slideWidth + gap;
+  };
 
-// Update slides list after cloning
-slides = document.querySelectorAll(".slide");
-
-let index = 1;
-
-// CHANGE HERE 👇
-const slideWidth = 548;
-
-// Start position
-track.style.transform = `translateX(-${slideWidth * index}px)`;
-
-function nextSlide() {
-  if (index < slides.length - 1) {
-    index++;
-    track.style.transition = "transform 0.3s ease";
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
+  const dots = [];
+  if (dotsWrap) {
+    for (let i = 0; i < total; i += 1) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className =
+        'h-2 w-2 rounded-full bg-Neutral-400 transition-all duration-300';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        index = i;
+        render(true);
+      });
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    }
   }
+
+  const render = (animate) => {
+    const step = getStep();
+    track.style.transition = animate ? 'transform 300ms ease-out' : 'none';
+    track.style.transform = `translateX(-${index * step}px)`;
+
+    if (status) {
+      status.textContent = `${index + 1} / ${total}`;
+    }
+
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('bg-Neutral-900', active);
+      dot.classList.toggle('w-5', active);
+      dot.classList.toggle('bg-Neutral-400', !active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  };
+
+  const next = () => {
+    index = (index + 1) % total;
+    render(true);
+  };
+
+  const prev = () => {
+    index = (index - 1 + total) % total;
+    render(true);
+  };
+
+  prevButton.addEventListener('click', prev);
+  nextButton.addEventListener('click', next);
+
+  window.addEventListener('resize', () => render(false));
+
+  track.addEventListener('touchstart', (event) => {
+    touchStartX = event.changedTouches[0].clientX;
+  });
+
+  track.addEventListener('touchend', (event) => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const delta = touchEndX - touchStartX;
+
+    if (Math.abs(delta) < 40) {
+      return;
+    }
+
+    if (delta < 0) {
+      next();
+    } else {
+      prev();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      next();
+    }
+    if (event.key === 'ArrowLeft') {
+      prev();
+    }
+  });
+
+  render(false);
 }
-
-function prevSlide() {
-  if (index > 0) {
-    index--;
-    track.style.transition = "transform 0.3s ease";
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-}
-
-// magic part
-track.addEventListener("transitionend", () => {
-  if (slides[index] === firstClone) {
-    track.style.transition = "none";
-    index = 1;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-
-  if (slides[index] === lastClone) {
-    track.style.transition = "none";
-    index = slides.length - 2;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-});
-
-const previousBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-
-previousBtn.addEventListener("click", prevSlide);
-nextBtn.addEventListener("click", nextSlide);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

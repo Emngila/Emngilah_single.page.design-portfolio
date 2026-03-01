@@ -154,79 +154,99 @@
       <section class="my-16 space-y-8 overflow-x-hidden xl:overflow-x-visible">
         <h3 class="text-center text-1 text-Neutral-900">My Work</h3>
         <!-- slider -->
-
-        <div class="slider-container relative ">
-          
-          <div
-            class="slides transition-transform duration-300 flex gap-x-8 justify-start items-center"
-          >
+        <div class="slider-container relative" aria-label="Portfolio slider">
+          <div class="overflow-hidden rounded-sm">
             <div
-              class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              class="slides flex gap-x-8 transition-transform duration-300 ease-out will-change-transform"
             >
-              <img
-                class="w-full h-full object-cover"
-                src="src/Assets/Images/image-slide-2.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
-            >
-              <img
-                class="w-full h-full object-cover"
-                src="src/Assets/Images/image-slide-3.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
-            >
-              <img
-                class="w-full h-full object-cover"
-                src="src/Assets/Images/image-slide-4.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
-            >
-              <img
-                class="w-full h-full object-cover"
-                src="src/Assets/Images/image-slide-5.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
-            >
-              <img
-                class="w-full h-full object-cover"
-                src="src/Assets/Images/image-slide-1.jpg"
-                alt=""
-              />
+              <figure
+                class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  src="src/Assets/Images/image-slide-2.jpg"
+                  alt="Branding poster project"
+                />
+              </figure>
+              <figure
+                class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  src="src/Assets/Images/image-slide-3.jpg"
+                  alt="Website hero visual design"
+                />
+              </figure>
+              <figure
+                class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  src="src/Assets/Images/image-slide-4.jpg"
+                  alt="Mobile UI composition"
+                />
+              </figure>
+              <figure
+                class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  src="src/Assets/Images/image-slide-5.jpg"
+                  alt="Editorial style campaign artwork"
+                />
+              </figure>
+              <figure
+                class="slide w-[16.875rem] sm:w-[33.75rem] aspect-[3/2] max-w-full rounded-sm flex-shrink-0 overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  src="src/Assets/Images/image-slide-1.jpg"
+                  alt="Product-focused landing page design"
+                />
+              </figure>
             </div>
           </div>
-        </div>
 
-        <div class="arrow-Wrapper flex justify-center items-center gap-x-4">
-          <button
-            id="prev"
-            class="w-12 h-12 flex justify-center items-center rounded-full bg-Neutral-900"
+          <div
+            class="arrow-Wrapper mt-8 flex flex-wrap justify-center items-center gap-x-4"
           >
-            <img
-              src="./src/Assets/Images/icon-arrow-left.svg"
-              alt="left arrow"
-            />
-          </button>
-          <button
-            id="next"
-            class="w-12 h-12 flex justify-center items-center rounded-full bg-Neutral-900"
-          >
-            <img
-              src="./src/Assets/Images/icon-arrow-right.svg"
-              alt="left arrow"
-            />
-          </button>
+            <button
+              id="prev"
+              class="w-12 h-12 flex justify-center items-center rounded-full bg-Neutral-900"
+              aria-label="Previous slide"
+            >
+              <img
+                src="./src/Assets/Images/icon-arrow-left.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </button>
+            <p
+              id="slide-status"
+              class="w-10 block text-center text-5 text-Neutral-400"
+              aria-live="polite"
+            >
+          
+            </p>
+            <button
+              id="next"
+              class="w-12 h-12 flex justify-center items-center rounded-full bg-Neutral-900"
+              aria-label="Next slide"
+            >
+              <img
+                src="./src/Assets/Images/icon-arrow-right.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </button>
+          </div>
+
+          <div
+            id="slide-dots"
+            class="mt-4 flex items-center justify-center gap-2"
+            role="tablist"
+            aria-label="Slide indicators"
+          ></div>
         </div>
       </section>
       <!-- Book a call -->
