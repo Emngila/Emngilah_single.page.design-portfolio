@@ -23,7 +23,7 @@ if (track && slides.length > 0 && prevButton && nextButton) {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className =
-        'h-2 w-2 rounded-full bg-Neutral-400 transition-all duration-300';
+        'h-2 w-2 rounded-full cursor-pointer bg-Neutral-400 transition-all duration-300';
       dot.setAttribute('role', 'tab');
       dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
       dot.addEventListener('click', () => {
